@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+
+import React,{useState} from 'react';
+import Content from './components/Content';
+import ContentTwo from "./components/ContentTwo"
+import ContentThree from "./components/ContentThree"
+import Dropdown from './components/Dropdown';
+
+import Hero from './components/Hero';
+import NavBar from './components/Nav';
+import { SliderData } from './data/SliderData';
+import GlobalStyles from './globalStyles';
+import {ContentDataOne, ContentDataThree, ContentDataTwo} from "./data/ContentData"
+import Footer from './components/Footer';
+import { FooterData } from './data/FooterData';
+
 
 function App() {
+
+const [isOpen, setIsOpen] = useState(false)
+
+const toggle = () =>{
+setIsOpen(!isOpen)
+
+}
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+<GlobalStyles />
+<NavBar toggle={toggle}/>
+<Dropdown isOpen={isOpen} toggle={toggle}/>
+<Hero slides={SliderData}/>
+<Content {...ContentDataOne}/>
+<ContentTwo {...ContentDataTwo}/>
+<ContentThree {...ContentDataThree} />
+<Footer {...FooterData}/>
+</>
   );
 }
 
